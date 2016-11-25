@@ -18,18 +18,22 @@ package com.palantir.atlasdb.cli.output;
 import org.slf4j.Logger;
 import org.slf4j.helpers.MessageFormatter;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public class OutputPrinter {
-    private Logger logger;
+    private final Logger logger;
 
     public OutputPrinter(Logger logger) {
         this.logger = logger;
     }
 
+    @SuppressFBWarnings({"SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_UNKNOWN_ARRAY"})
     public void info(String message, Object... args) {
         logger.info(message, args);
         System.out.println(MessageFormatter.arrayFormat(message, args).getMessage());
     }
 
+    @SuppressFBWarnings({"SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_UNKNOWN_ARRAY"})
     public void error(String message, Object... args) {
         logger.error(message, args);
         System.err.println(MessageFormatter.arrayFormat(message, args).getMessage());
