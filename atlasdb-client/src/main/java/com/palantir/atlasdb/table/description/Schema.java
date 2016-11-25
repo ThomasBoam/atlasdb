@@ -16,8 +16,11 @@
 package com.palantir.atlasdb.table.description;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +54,8 @@ import com.palantir.atlasdb.table.description.render.StreamStoreRenderer;
 import com.palantir.atlasdb.table.description.render.TableFactoryRenderer;
 import com.palantir.atlasdb.table.description.render.TableRenderer;
 import com.palantir.atlasdb.transaction.api.ConflictHandler;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * Defines a schema.
@@ -332,6 +337,7 @@ public class Schema {
              tableFactoryRenderer.getClassName());
     }
 
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
     private void emit(File srcDir, String code, String packName, String className)
             throws IOException {
         File outputDir = new File(srcDir, packName.replace(".", "/"));
@@ -341,9 +347,9 @@ public class Schema {
         outputDir.mkdirs();
         outputFile = outputFile.getAbsoluteFile();
         outputFile.createNewFile();
-        FileWriter os = null;
+        OutputStreamWriter os = null;
         try {
-            os = new FileWriter(outputFile);
+            os = new OutputStreamWriter(new FileOutputStream(outputFile), StandardCharsets.UTF_8);
             os.write(code);
         } finally {
             if (os != null) {
