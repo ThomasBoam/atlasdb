@@ -35,6 +35,6 @@ public enum StreamTableType { // WARNING: do not change these without an upgrade
     }
 
     public String getJavaClassName(String prefix) {
-        return Renderers.CamelCase(prefix) + javaSuffix;
+        return Renderers.camelCaseWithLastWasUnderscore(prefix) + javaSuffix;
     }
 }

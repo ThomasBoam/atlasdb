@@ -123,7 +123,7 @@ class NamedRowResultRenderer extends Renderer {
             line("if (bytes == null) {"); {
                 line("return null;");
             } line("}");
-            line(Renderers.CamelCase(col.getLongName()), " value = ", Renderers.CamelCase(col.getLongName()), ".BYTES_HYDRATOR.hydrateFromBytes(bytes);");
+            line(Renderers.camelCaseWithLastWasUnderscore(col.getLongName()), " value = ", Renderers.camelCaseWithLastWasUnderscore(col.getLongName()), ".BYTES_HYDRATOR.hydrateFromBytes(bytes);");
             line("return value.getValue();");
         } line("}");
     }

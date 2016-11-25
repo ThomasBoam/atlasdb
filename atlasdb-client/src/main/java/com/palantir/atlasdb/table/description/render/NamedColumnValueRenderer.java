@@ -29,7 +29,7 @@ public class NamedColumnValueRenderer extends Renderer {
     public NamedColumnValueRenderer(Renderer parent, String tableName, NamedColumnDescription col) {
         super(parent);
         this.tableName = tableName;
-        this.Name = Renderers.CamelCase(col.getLongName());
+        this.Name = Renderers.camelCaseWithLastWasUnderscore(col.getLongName());
         this.col = col;
     }
 

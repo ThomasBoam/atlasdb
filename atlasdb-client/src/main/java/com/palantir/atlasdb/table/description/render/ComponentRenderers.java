@@ -35,6 +35,6 @@ class ComponentRenderers {
     }
 
     static String VarName(NameComponentDescription comp) {
-        return Renderers.CamelCase(comp.getComponentName());
+        return Renderers.camelCaseWithLastWasUnderscore(comp.getComponentName());
     }
 }

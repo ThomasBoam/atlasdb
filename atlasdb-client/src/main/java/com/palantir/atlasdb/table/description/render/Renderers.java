@@ -18,6 +18,8 @@ package com.palantir.atlasdb.table.description.render;
 import com.palantir.atlasdb.table.description.IndexMetadata;
 import com.palantir.atlasdb.table.description.TableDefinition;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 public class Renderers {
     private Renderers() {
         // cannot instantiate
@@ -27,7 +29,7 @@ public class Renderers {
         return camelCase(string, false);
     }
 
-    public static String CamelCase(String string) {
+    public static String camelCaseWithLastWasUnderscore(String string) {
         return camelCase(string, true);
     }
 
@@ -69,13 +71,13 @@ public class Renderers {
         } else if (table.getJavaTableName() != null) {
             return table.getJavaTableName();
         } else {
-            return Renderers.CamelCase(rawTableName);
+            return Renderers.camelCaseWithLastWasUnderscore(rawTableName);
         }
     }
 
     static String getIndexTableName(IndexMetadata index) {
         if (index.getJavaIndexName() == null) {
-            return Renderers.CamelCase(index.getIndexName());
+            return Renderers.camelCaseWithLastWasUnderscore(index.getIndexName());
         } else {
             return index.getJavaIndexName();
         }

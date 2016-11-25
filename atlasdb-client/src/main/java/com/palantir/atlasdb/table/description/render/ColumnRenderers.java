@@ -33,7 +33,7 @@ public class ColumnRenderers {
     }
 
     static String VarName(NamedColumnDescription col) {
-        return Renderers.CamelCase(col.getLongName());
+        return Renderers.camelCaseWithLastWasUnderscore(col.getLongName());
     }
 
     static String typeName(NamedColumnDescription col) {

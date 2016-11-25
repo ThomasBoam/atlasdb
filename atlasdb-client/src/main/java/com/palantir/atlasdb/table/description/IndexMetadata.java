@@ -272,7 +272,7 @@ public class IndexMetadata {
     public String getIndexTable() {
         String indexTable = getJavaIndexName();
         if (indexTable == null) {
-            indexTable = Renderers.CamelCase(getIndexName());
+            indexTable = Renderers.camelCaseWithLastWasUnderscore(getIndexName());
         }
         return indexTable;
     }

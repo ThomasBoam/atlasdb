@@ -530,7 +530,7 @@ public class TableRenderer {
             String indexName = Renderers.getIndexTableName(index);
             String columnClass = null;
             if (hasCol) {
-                columnClass = Renderers.CamelCase(index.getColumnNameToAccessData());
+                columnClass = Renderers.camelCaseWithLastWasUnderscore(index.getColumnNameToAccessData());
                 line("if (e.getValue() instanceof ", columnClass, ")");
             } else if (isDynamic(table)) {
                 columnClass = tableName + "ColumnValue";
@@ -801,7 +801,7 @@ public class TableRenderer {
                 List<TypeAndName> iterableArgNames = Lists.newArrayList();
 
                 boolean hasCol = index.getColumnNameToAccessData() != null;
-                String columnClass = hasCol ? Renderers.CamelCase(index.getColumnNameToAccessData()) : null;
+                String columnClass = hasCol ? Renderers.camelCaseWithLastWasUnderscore(index.getColumnNameToAccessData()) : null;
 
                 line("ImmutableSet.Builder<Cell> indexCells = ImmutableSet.builder();");
 
@@ -886,7 +886,7 @@ public class TableRenderer {
 
         private void renderNamedIndexDeleteRaw(NamedColumnDescription col, IndexMetadata index) {
             String indexName = Renderers.getIndexTableName(index);
-            String NamedColumn = Renderers.CamelCase(col.getLongName());
+            String NamedColumn = Renderers.camelCaseWithLastWasUnderscore(col.getLongName());
             line("private void delete", indexName, "Raw(Map<Cell, byte[]> results) {"); {
                 List<String> rowArgumentNames = Lists.newArrayList();
                 List<String> colArgumentNames = Lists.newArrayList();

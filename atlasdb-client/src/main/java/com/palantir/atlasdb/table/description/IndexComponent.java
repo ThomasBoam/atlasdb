@@ -118,10 +118,10 @@ public class IndexComponent {
 
     public String getValueCode(String rowCode, String dynamicColCode, String columnCode) {
         if (rowComponentName != null) {
-            return rowCode + ".get" + Renderers.CamelCase(rowComponentName) + "()";
+            return rowCode + ".get" + Renderers.camelCaseWithLastWasUnderscore(rowComponentName) + "()";
         } else if (dynamicColumnComponentName != null){
             Preconditions.checkArgument(dynamicColCode != null, "cannot apply to non dynamic table.");
-            return dynamicColCode + ".get" + Renderers.CamelCase(dynamicColumnComponentName) + "()";
+            return dynamicColCode + ".get" + Renderers.camelCaseWithLastWasUnderscore(dynamicColumnComponentName) + "()";
         } else {
             return codeToAccessValue.replaceAll("_value", columnCode);
         }

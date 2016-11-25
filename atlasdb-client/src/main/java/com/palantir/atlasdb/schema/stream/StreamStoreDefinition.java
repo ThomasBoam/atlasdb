@@ -48,7 +48,7 @@ public class StreamStoreDefinition {
     }
 
     public StreamStoreRenderer getRenderer(String packageName, String name) {
-        return new StreamStoreRenderer(Renderers.CamelCase(longName), idType, packageName, name, inMemoryThreshold);
+        return new StreamStoreRenderer(Renderers.camelCaseWithLastWasUnderscore(longName), idType, packageName, name, inMemoryThreshold);
     }
 
     public Multimap<String, Supplier<OnCleanupTask>> getCleanupTasks(String packageName, String name, StreamStoreRenderer renderer, Namespace namespace) {
