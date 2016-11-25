@@ -35,8 +35,9 @@ libsDirName = file('build/artifacts')
 
 dependencies {
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: libVersions.checkstyle
-    testCompile group: 'junit', name: 'junit'
+    compile group: 'com.google.code.findbugs', name: 'annotations'
     findbugsPlugins group: 'jp.skypencil.findbugs.slf4j', name: 'bug-pattern', ext: 'jar'
+    testCompile group: 'junit', name: 'junit'
 }
 
 apply from: rootProject.file('gradle/javadoc.gradle'), to: javadoc
